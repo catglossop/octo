@@ -68,7 +68,6 @@ def chunk_act_obs(
     traj["action"] = tf.gather(
         traj["action"], history_indices
     )  # [traj_len, window_size, action_horizon, action_dim]
-
     # finally, we deal with marking which actions are past the goal timestep (or final timestep if no goal)
     if "timestep" in traj["task"]:
         goal_timestep = traj["task"]["timestep"]
@@ -85,7 +84,7 @@ def chunk_act_obs(
         t - (window_size + 1) + w + h
     )  # [traj_len, window_size, action_horizon]
     traj["observation"]["task_completed"] = relative_goal_timestep <= 0
-
+    print("ACTION: ", traj["action"].shape)
     # broadcast "action_pad_mask" to the new chunked shape, and mark actions past the goal timestep as padding
     traj["action_pad_mask"] = tf.logical_and(
         # [traj_len, 1, 1, action_dim]
@@ -134,6 +133,7 @@ def pad_actions_and_proprio(
 
     Records which action dimensions are padding in "action_pad_mask".
     """
+    
     traj["action_pad_mask"] = tf.ones_like(traj["action"], dtype=tf.bool)
     if max_action_dim is not None:
         action_dim = traj["action"].shape[-1]

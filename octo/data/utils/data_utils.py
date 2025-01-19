@@ -156,10 +156,10 @@ def get_dataset_statistics(
     actions = np.concatenate(actions)
     metadata = {
         "action": {
-            "mean": actions.mean(0).tolist(),
-            "std": actions.std(0).tolist(),
-            "max": actions.max(0).tolist(),
-            "min": actions.min(0).tolist(),
+            "mean": actions.mean(0).mean(0).tolist(),
+            "std": actions.std(0).std(0).tolist(),
+            "max": actions.max(0).max(0).tolist(),
+            "min": actions.min(0).min(0).min(0).tolist(),
             "p99": np.quantile(actions, 0.99, 0).tolist(),
             "p01": np.quantile(actions, 0.01, 0).tolist(),
         },
@@ -188,7 +188,7 @@ def get_dataset_statistics(
         os.makedirs(os.path.dirname(local_path), exist_ok=True)
         with open(local_path, "w") as f:
             json.dump(metadata, f)
-
+     
     return metadata
 
 
@@ -248,8 +248,9 @@ def normalize_action_and_proprio(
     keys_to_normalize = {
         "action": "action",
     }
-    if "proprio" in traj["observation"]:
-        keys_to_normalize["proprio"] = "observation/proprio"
+    # import pdb; pdb.set_trace()
+    # if "proprio" in traj["observation"]:
+    #     keys_to_normalize["proprio"] = "observation/proprio"
 
     if normalization_type == NormalizationType.NORMAL:
         # normalize to mean 0, std 1
@@ -257,6 +258,7 @@ def normalize_action_and_proprio(
             mask = metadata[key].get(
                 "mask", tf.ones_like(metadata[key]["mean"], dtype=tf.bool)
             )
+            tf.print(traj)
             traj = dl.transforms.selective_tree_map(
                 traj,
                 match=lambda k, _: k == traj_key,

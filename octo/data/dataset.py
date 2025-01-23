@@ -413,8 +413,6 @@ def make_dataset_from_rlds(
             tf.strings.as_string(tf.range(traj_len)),
         ])
 
-        print(new_obs["image_primary"].shape)
-        breakpoint()
         traj = {
             "observation": new_obs,
             "task": task,

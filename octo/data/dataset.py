@@ -353,8 +353,6 @@ def make_dataset_from_rlds(
         # extracts images, depth images and proprio from the "observation" dict
         traj_len = tf.shape(traj["action"])[0]
         old_obs = traj["observation"]
-        print(old_obs.shape)
-        breakpoint()
         new_obs = {}
         for new, old in image_obs_keys.items():
             if old is None:
@@ -414,6 +412,9 @@ def make_dataset_from_rlds(
             tf.repeat(tf.constant(":"), traj_len),
             tf.strings.as_string(tf.range(traj_len)),
         ])
+
+        print(new_obs["image_primary"].shape)
+        breakpoint()
         traj = {
             "observation": new_obs,
             "task": task,

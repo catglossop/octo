@@ -94,7 +94,6 @@ def chunk_act_obs(
         # [traj_len, window_size, action_horizon, 1]
         tf.logical_not(traj["observation"]["task_completed"])[:, :, :, None],
     )
-    traj["action_pad_mask"][-1, :, :, :] = tf.fill(traj["action_pad_mask"][-1, :, :, :].shape, False) 
 
     return traj
 

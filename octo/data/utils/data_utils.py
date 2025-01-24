@@ -145,7 +145,7 @@ def get_dataset_statistics(
     num_transitions = 0
     num_trajectories = 0
     # print("Computing dataset statistics...")
-    # breakpoint()
+    print(save_dir)
     for traj in tqdm.tqdm(
         dataset.iterator(),
         total=cardinality if cardinality != tf.data.UNKNOWN_CARDINALITY else None,

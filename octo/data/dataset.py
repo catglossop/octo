@@ -429,6 +429,8 @@ def make_dataset_from_rlds(
         return traj
 
     def is_nonzero_length(traj):
+        if "proprio" not in traj.keys():
+            return tf.shape(traj["action"])[0] > 0
         return tf.shape(traj["action"])[0] > 0 and tf.shape(traj["proprio"])[0] > 0
 
     builder = tfds.builder(name, data_dir=data_dir)

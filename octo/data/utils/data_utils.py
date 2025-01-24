@@ -151,6 +151,7 @@ def get_dataset_statistics(
         total=cardinality if cardinality != tf.data.UNKNOWN_CARDINALITY else None,
     ):
         print(traj["action"].shape)
+        print(traj["proprio"].shape)
         actions.append(traj["action"])
         if "proprio" in traj:
             proprios.append(traj["proprio"])
@@ -169,6 +170,7 @@ def get_dataset_statistics(
         "num_transitions": num_transitions,
         "num_trajectories": num_trajectories,
     }
+    print(metadata)
     if proprios:
         proprios = np.concatenate(proprios)
         metadata["proprio"] = {

@@ -18,6 +18,7 @@ from octo.data.utils.data_utils import (
     pprint_data_mixture,
     sample_match_keys_uniform,
     tree_map,
+    uniform_sample_instructions,
 )
 from octo.utils.spec import ModuleSpec
 

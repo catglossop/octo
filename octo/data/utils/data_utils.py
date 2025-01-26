@@ -46,6 +46,13 @@ def to_padding(tensor: tf.Tensor) -> tf.Tensor:
     else:
         raise ValueError(f"Cannot generate padding for tensor of type {tensor.dtype}.")
 
+def uniform_sample_instructions(d: dict, key: str):
+    """Samples uniformly from all instructions."""
+    instructions = d[key]
+    if not instructions:
+        raise ValueError(f"No instructions found for {key}.")
+    idx = tf.random.uniform((), 0, len(instructions) - 1, dtype=tf.int32)
+    return instructions[idx]
 
 def sample_match_keys_uniform(d: dict, key_template: str):
     """Samples uniformly from all keys fnmatching the template."""

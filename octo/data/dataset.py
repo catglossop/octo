@@ -32,7 +32,7 @@ def apply_trajectory_transforms(
     window_size: int = 1,
     action_horizon: int = 1,
     subsample_length: Optional[int] = None,
-    skip_unlabeled: bool = False,
+    skip_unlabeled: bool = True,
     max_action: Optional[float] = None,
     max_proprio: Optional[float] = None,
     task_augment_strategy: Optional[str] = None,

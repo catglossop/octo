@@ -49,7 +49,8 @@ def to_padding(tensor: tf.Tensor) -> tf.Tensor:
 def uniform_sample_instructions(d: dict, key: str):
     """Samples uniformly from all instructions."""
     instructions = d[key]
-    if len(instructions) == 0:
+    print(instructions)
+    if tf.shape(instructions)[0] == 0:
         raise ValueError(f"No instructions found for {key}.")
     idx = tf.random.uniform((), 0, len(instructions) - 1, dtype=tf.int32)
     return instructions[idx]

@@ -376,14 +376,7 @@ def make_dataset_from_rlds(
         # extracts `language_key` into the "task" dict, or samples uniformly if `language_key` fnmatches multiple keys
         task = {}
         if language_key is not None:
-            # task["language_instruction"] = sample_match_keys_uniform(traj, language_key)
-            # task["language_instruction"] = uniform_sample_instructions(traj, language_key)
             task["language_instruction"] = traj[language_key]
-            # if task["language_instruction"].dtype != tf.string:
-            #     raise ValueError(
-            #         f"Language key {language_key} has dtype {task['language_instruction'].dtype}, "
-            #         "but it must be tf.string."
-            #     )
         # add reward and mask
         num_final_repeat = 1
         num_pos = tf.minimum(num_final_repeat, traj_len)

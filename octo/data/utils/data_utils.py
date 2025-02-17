@@ -49,7 +49,7 @@ def to_padding(tensor: tf.Tensor) -> tf.Tensor:
 def uniform_sample_instructions(d: dict, key: str):
     """Samples uniformly from all instructions."""
     instructions = d[key]
-    print(instructions)
+    # print(instructions)
     idx = tf.random.uniform((), 0, len(instructions) - 1, dtype=tf.int32)
     return instructions[idx]
 
@@ -152,12 +152,10 @@ def get_dataset_statistics(
     num_trajectories = 0
     # print("Computing dataset statistics...")
     print(save_dir)
-    breakpoint()
     for traj in tqdm.tqdm(
         dataset.iterator(),
         total=cardinality if cardinality != tf.data.UNKNOWN_CARDINALITY else None,
     ):
-        print(traj)
         actions.append(traj["action"])
         if "proprio" in traj:
             proprios.append(traj["proprio"])

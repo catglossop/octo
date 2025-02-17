@@ -156,6 +156,7 @@ def get_dataset_statistics(
         dataset.iterator(),
         total=cardinality if cardinality != tf.data.UNKNOWN_CARDINALITY else None,
     ):
+        print(traj)
         actions.append(traj["action"])
         if "proprio" in traj:
             proprios.append(traj["proprio"])

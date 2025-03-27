@@ -408,7 +408,7 @@ def make_dataset_from_rlds(
             tf.repeat(tf.constant(":"), traj_len),
             tf.strings.as_string(tf.range(traj_len)),
         ])
-
+        tf.print(traj["action"])
         traj = {
             "observation": new_obs,
             "task": task,

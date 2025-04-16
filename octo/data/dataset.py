@@ -455,12 +455,11 @@ def make_dataset_from_rlds(
             force_recompute=force_recompute_dataset_statistics,
         )
     dataset_statistics = tree_map(np.array, dataset_statistics)
-    
+    breakpoint()
     # skip normalization for certain action dimensions
     if action_normalization_mask is not None:
         if (
-            len(action_normalization_mask)
-            != dataset_statistics["action"]["mean"].shape[-1]
+            len(action_normalization_mask) != dataset_statistics["action"]["mean"].shape[-1]
         ):
             raise ValueError(
                 f"Length of skip_normalization_mask ({len(action_normalization_mask)}) "

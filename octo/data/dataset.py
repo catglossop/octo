@@ -455,7 +455,7 @@ def make_dataset_from_rlds(
             force_recompute=force_recompute_dataset_statistics,
         )
     dataset_statistics = tree_map(np.array, dataset_statistics)
-    breakpoint()
+
     # skip normalization for certain action dimensions
     if action_normalization_mask is not None:
         if (

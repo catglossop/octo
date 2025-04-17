@@ -165,10 +165,10 @@ def get_dataset_statistics(
     breakpoint()
     metadata = {
         "action": {
-            "mean": actions.mean(0).mean(0).tolist(),
-            "std": actions.std(0).std(0).tolist(),
-            "max": actions.max(0).max(0).tolist(),
-            "min": actions.min(0).min(0).min(0).tolist(),
+            "mean": actions.mean(0).tolist(),
+            "std": actions.std(0).tolist(),
+            "max": actions.max(0).tolist(),
+            "min": actions.min(0).min(0).tolist(),
             "p99": np.quantile(actions, 0.99, 0).tolist(),
             "p01": np.quantile(actions, 0.01, 0).tolist(),
         },

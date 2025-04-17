@@ -433,6 +433,7 @@ def make_dataset_from_rlds(
     if isinstance(dataset_statistics, str):
         with tf.io.gfile.GFile(dataset_statistics, "r") as f:
             dataset_statistics = json.load(f)
+        breakpoint()
     elif dataset_statistics is None:
         breakpoint()
         full_dataset = dl.DLataset.from_rlds(builder, split="all", shuffle=False)

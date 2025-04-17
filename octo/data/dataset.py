@@ -434,6 +434,7 @@ def make_dataset_from_rlds(
         with tf.io.gfile.GFile(dataset_statistics, "r") as f:
             dataset_statistics = json.load(f)
     elif dataset_statistics is None:
+        breakpoint()
         full_dataset = dl.DLataset.from_rlds(builder, split="all", shuffle=False)
         for filter_fcn_spec in filter_functions:
             full_dataset = full_dataset.filter(ModuleSpec.instantiate(filter_fcn_spec))

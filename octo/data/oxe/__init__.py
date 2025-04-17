@@ -110,6 +110,7 @@ def make_oxe_dataset_kwargs_and_weights(
     load_language: bool = True,
     force_recompute_dataset_statistics: bool = False,
     action_proprio_normalization_type: NormalizationType = NormalizationType.NORMAL,
+    dataset_statistics: str = None,
 ) -> Tuple[Dict[str, Any], List[float]]:
     """
     Generates dataset kwargs for a given dataset mix from the Open X-Embodiment dataset. The returned kwargs

@@ -431,6 +431,7 @@ def make_dataset_from_rlds(
 
     # load or compute dataset statistics
     if isinstance(dataset_statistics, str):
+
         with tf.io.gfile.GFile(dataset_statistics, "r") as f:
             dataset_statistics = json.load(f)
     elif dataset_statistics is None:
@@ -487,7 +488,7 @@ def make_dataset_from_rlds(
     )
 
 
-    action_proprio_normalization_type = NormalizationType.NORMAL
+    action_proprio_normalization_type = NormalizationType.BOUNDS
     if not skip_norm:
         dataset = dataset.traj_map(
             partial(

@@ -125,7 +125,6 @@ def get_dataset_statistics(
         logging.info(f"Loading existing dataset statistics from {local_path}.")
         with open(local_path, "r") as f:
             metadata = json.load(f)
-        breakpoint()
         return metadata
 
     dataset = dataset.traj_map(
@@ -152,7 +151,7 @@ def get_dataset_statistics(
     num_transitions = 0
     num_trajectories = 0
     # print("Computing dataset statistics...")
-    print(save_dir)
+    
     for traj in tqdm.tqdm(
         dataset.iterator(),
         total=cardinality if cardinality != tf.data.UNKNOWN_CARDINALITY else None,
@@ -163,6 +162,7 @@ def get_dataset_statistics(
         num_transitions += traj["action"].shape[0]
         num_trajectories += 1
     actions = np.concatenate(actions)
+    breakpoint()
     metadata = {
         "action": {
             "mean": actions.mean(0).mean(0).tolist(),
@@ -260,7 +260,7 @@ def normalize_action_and_proprio(
     # import pdb; pdb.set_trace()
     # if "proprio" in traj["observation"]:
     #     keys_to_normalize["proprio"] = "observation/proprio"
-    
+
     if normalization_type == NormalizationType.NORMAL:
         # normalize to mean 0, std 1
         for key, traj_key in keys_to_normalize.items():

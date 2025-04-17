@@ -162,7 +162,6 @@ def get_dataset_statistics(
         num_transitions += traj["action"].shape[0]
         num_trajectories += 1
     actions = np.concatenate(actions)
-    breakpoint()
     metadata = {
         "action": {
             "mean": actions.mean(0).tolist(),

@@ -154,6 +154,7 @@ def make_oxe_dataset_kwargs_and_weights(
                     load_language,
                     force_recompute_dataset_statistics,
                     action_proprio_normalization_type,
+                    dataset_statistics,
                 )
             )
             weights.append(weight)

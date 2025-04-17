@@ -125,6 +125,7 @@ def get_dataset_statistics(
         logging.info(f"Loading existing dataset statistics from {local_path}.")
         with open(local_path, "r") as f:
             metadata = json.load(f)
+        breakpoint()
         return metadata
 
     dataset = dataset.traj_map(

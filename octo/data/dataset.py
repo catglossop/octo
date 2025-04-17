@@ -466,7 +466,7 @@ def make_dataset_from_rlds(
                 f"Length of skip_normalization_mask ({len(action_normalization_mask)}) "
                 f"does not match action dimension ({dataset_statistics['action']['mean'].shape[-1]})."
             )
-        dataset_statistics["action"]["mask"] = tf.tensor(action_normalization_mask)
+        dataset_statistics["action"]["mask"] = tf.Tensor(action_normalization_mask)
 
     # construct the dataset
     if "val" not in builder.info.splits:

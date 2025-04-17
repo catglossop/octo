@@ -113,7 +113,7 @@ def get_dataset_statistics(
         path = tf.io.gfile.join(save_dir, f"dataset_statistics_{unique_hash}.json")
     else:
         path = local_path
-    
+
     # check if cache file exists and load
     if tf.io.gfile.exists(path) and not force_recompute:
         logging.info(f"Loading existing dataset statistics from {path}.")
@@ -260,7 +260,7 @@ def normalize_action_and_proprio(
     # import pdb; pdb.set_trace()
     # if "proprio" in traj["observation"]:
     #     keys_to_normalize["proprio"] = "observation/proprio"
-
+    
     if normalization_type == NormalizationType.NORMAL:
         # normalize to mean 0, std 1
         for key, traj_key in keys_to_normalize.items():
